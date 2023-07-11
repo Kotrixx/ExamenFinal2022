@@ -7,10 +7,7 @@ import com.example.examenfinal.Models.Beans.Cine;
 import com.example.examenfinal.Models.Beans.Pelicula;
 
 import java.awt.image.AreaAveragingScaleFilter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class CarteleraDao extends BaseDao {
@@ -106,6 +103,23 @@ public class CarteleraDao extends BaseDao {
         }
         return lista;
     }
+    public void crearFuncion(Cartelera cartelera) throws SQLException {
+
+        String sql = "INSERT INTO cartelera (idCartelera, idpelicula, idcine, doblada, subtitulada, horario) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
+
+        try(Connection connection=this.getConnection();
+            PreparedStatement pstmt = connection.prepareStatement(sql);) {
+            pstmt.setInt(1, cartelera.getIdCartelera());
+            pstmt.setInt(2, cartelera.getPelicula().getIdPelicula());
+            pstmt.setInt(3, cartelera.getCine().getIdCine());
+            pstmt.setInt(4, cartelera.getDoblada());
+            pstmt.setInt(5, cartelera.getSubtitulada());
+            pstmt.setString(6, cartelera.getHorario());
+            pstmt.executeUpdate();
+        }
+    }
+
 
 
 
