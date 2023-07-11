@@ -7,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% ArrayList<Cartelera> listaCartelera = (ArrayList<Cartelera>) request.getAttribute("listarFunciones");%>
+<% ArrayList<Cartelera> listaCartelera = (ArrayList<Cartelera>) request.getAttribute("listaFunciones");%>
 <html>
 <head>
     <title>Title</title>
@@ -23,7 +23,7 @@
         <thead>
         <th>Cadena</th>
         <th>Cine</th>
-        <th>Peliucla</th>
+        <th>Pelicula</th>
         <th>Horario</th>
         <th></th>
         </thead>
