@@ -1,4 +1,4 @@
-package com.example.examenfinal.Beans;
+package com.example.examenfinal.Models.Beans;
 
 public class Cine {
     private int idCine;

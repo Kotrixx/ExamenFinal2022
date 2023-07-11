@@ -1,4 +1,4 @@
-package com.example.examenfinal.Beans;
+package com.example.examenfinal.Models.Beans;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

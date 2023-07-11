@@ -1,4 +1,4 @@
-package com.example.examenfinal.Daos;
+package com.example.examenfinal.Models.Daos;
 
 import java.sql.*;
 
