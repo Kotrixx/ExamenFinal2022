@@ -7,10 +7,7 @@ import com.example.examenfinal.Models.Beans.Cine;
 import com.example.examenfinal.Models.Beans.Pelicula;
 
 import java.awt.image.AreaAveragingScaleFilter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class CarteleraDao extends BaseDao {
@@ -82,6 +79,7 @@ public class CarteleraDao extends BaseDao {
         return lista;
 
     }
+
     public ArrayList<Cine>listarCines(){
 
         ArrayList<Cine> lista=new ArrayList<>();
@@ -106,6 +104,47 @@ public class CarteleraDao extends BaseDao {
         }
         return lista;
     }
+
+    //ACÁ EN REALIDAD ESTOY CREANDO UNA FUNCIÓN, ASÍ ESTÉ USANDO EL OBJETO CARTELERA
+    public void crearFuncion(Cartelera cartelera) throws SQLException {
+
+        String sql = "INSERT INTO cartelera (idpelicula, idcine, doblada, subtitulada, horario) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
+
+        try(Connection connection=this.getConnection();
+            PreparedStatement pstmt = connection.prepareStatement(sql);) {
+
+            pstmt.setInt(1, cartelera.getPelicula().getIdPelicula());
+            pstmt.setInt(2, cartelera.getCine().getIdCine());
+            pstmt.setInt(3, cartelera.getDoblada());
+            pstmt.setInt(4, cartelera.getSubtitulada());
+            pstmt.setString(5, cartelera.getHorario());
+
+            pstmt.setInt(6, cartelera.getIdCartelera());
+            pstmt.executeUpdate();
+        }
+    }
+
+    public void editarEmpleado(Cartelera cartelera) throws SQLException {
+
+        String sql = "UPDATE cartelera SET idpelicula = ?, idcine = ?, doblada = ?, subtitulada = ?, "
+                + "horario = ? WHERE idCartelera = ?";
+
+        try(Connection connection =this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql);) {
+            pstmt.setInt(1, cartelera.getPelicula().getIdPelicula());
+            pstmt.setInt(2, cartelera.getCine().getIdCine());
+            pstmt.setInt(3, cartelera.getDoblada());
+            pstmt.setInt(4, cartelera.getSubtitulada());
+            pstmt.setString(5, cartelera.getHorario());
+
+            pstmt.setInt(6, cartelera.getIdCartelera());
+            pstmt.executeUpdate();
+        }
+    }
+
+
+
 
 
 
